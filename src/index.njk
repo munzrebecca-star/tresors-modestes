@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ site.nom }} — art modeste chiné à Paris"
+  description: "{{ site.accroche }}"
+---
+<section class="hero conteneur">
+  <p class="hero__kicker">Pièces uniques, chinées avec cœur</p>
+  <h1>Le charme fou des objets modestes</h1>
+  <p class="hero__texte">{{ site.accroche }}</p>
+  <a class="bouton bouton--accent" href="/boutique/">Découvrir la boutique</a>
+</section>
+
+<section class="conteneur section-nouveautes">
+  <h2>Les petites dernières</h2>
+  <div class="grille-produits">
+    {% for produit in collections.produitsDisponibles | reverse %}
+      {% if loop.index <= 3 %}
+        {% include "partials/carte-produit.njk" %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="conteneur section-texte section-texte--fond">
+  <div class="section-texte__colonne">
+    <h2>Qu'est-ce que l'art modeste&nbsp;?</h2>
+    <p>L'art modeste, c'est tout ce qui fait la poésie populaire du quotidien&nbsp;: figurines de plâtre peintes à la main, images pieuses, souvenirs de vacances, bibelots kitsch et objets de brocante. Des pièces sans grande valeur marchande, mais chargées d'histoires, de maladresse et de tendresse.</p>
+  </div>
+  <div class="section-texte__colonne">
+    <h2>Notre histoire</h2>
+    <p>Nous sommes deux sœurs, Rebecca et Janis. Nous avons grandi entourées de ces objets grâce à nos grands-parents et à notre mère, présidente du MIAM — le Musée International des Arts Modestes, à Sète. Aujourd'hui, nous chinons et sélectionnons ces trésors pour leur offrir une nouvelle maison.</p>
+    <a href="/a-propos/">Lire notre histoire →</a>
+  </div>
+</section>

@@ -1,0 +1,6 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trésors modestes">
+  <rect width="120" height="120" rx="20" fill="#FFF4E3"/>
+  <rect x="24" y="34" width="72" height="16" fill="#3B2A22"/>
+  <rect x="52" y="50" width="16" height="44" fill="#3B2A22"/>
+  <circle cx="78" cy="21" r="13" fill="#3FA34D"/>
+</svg>

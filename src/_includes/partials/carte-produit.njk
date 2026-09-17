@@ -1,0 +1,11 @@
+<a class="carte-produit{% if produit.data.vendu %} carte-produit--vendu{% endif %}" href="{{ produit.url }}">
+  <div class="carte-produit__image">
+    <img src="{{ produit.data.photos[0] }}" alt="{{ produit.data.titre }}" loading="lazy">
+    {% if produit.data.vendu %}<span class="bandeau-vendu">Vendu</span>{% endif %}
+  </div>
+  <div class="carte-produit__contenu">
+    <span class="etiquette-categorie">{{ produit.data.categorie | nomCategorie }}</span>
+    <h3>{{ produit.data.titre }}</h3>
+    <p class="carte-produit__prix">{{ produit.data.prix | prixFormate }}</p>
+  </div>
+</a>

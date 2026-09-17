@@ -1,0 +1,31 @@
+/* ============================================================
+   Couleurs, polices — direction "Kitsch rétro sud" (provisoire)
+   Remplacez les valeurs ci-dessous par votre vraie palette et
+   vos polices une fois votre logo/charte définitifs. Rien
+   d'autre dans le site n'a besoin d'être modifié.
+   ============================================================ */
+:root {
+  --couleur-fond: #FFF4E3;
+  --couleur-fond-alt: #FFEFD9;
+  --couleur-carte: #FFFFFF;
+  --couleur-texte: #3B2A22;
+  --couleur-texte-doux: #6B5647;
+
+  --couleur-accent-1: #FF6B4A; /* corail — boutons, liens actifs */
+  --couleur-accent-1-texte: #3B2A22;
+  --couleur-accent-2: #FF9CCB; /* rose bonbon */
+  --couleur-accent-2-tinte: #FFE7F2;
+  --couleur-accent-3: #3A86FF; /* bleu méditerranée */
+  --couleur-accent-3-tinte: #E4EEFF;
+
+  --couleur-vendu: #3B2A22;
+
+  --couleur-logo-accent: #3FA34D; /* le petit point vert du logo, seule touche de couleur du monogramme */
+
+  --police-titres: "Fredoka", sans-serif;
+  --police-texte: "Nunito Sans", sans-serif;
+
+  --rayon: 16px;
+  --rayon-petit: 999px;
+  --ombre: 0 2px 14px rgba(59, 42, 34, 0.08);
+}

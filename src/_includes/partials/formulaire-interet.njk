@@ -1,0 +1,31 @@
+<details class="bloc-interet">
+  <summary class="bouton bouton--accent">Je suis intéressé·e</summary>
+
+  <form name="interet" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="formulaire" action="/merci/">
+    <input type="hidden" name="form-name" value="interet">
+    <p class="cache-visuellement"><label>Ne pas remplir si vous êtes humain·e : <input name="bot-field"></label></p>
+
+    <input type="hidden" name="produit" value="{{ titre }}">
+    <input type="hidden" name="reference" value="{{ reference }}">
+    <input type="hidden" name="prix" value="{{ prix | prixFormate }}">
+    <input type="hidden" name="lien" value="{{ site.url }}{{ page.url }}">
+
+    <div class="formulaire__recap">
+      <p><strong>{{ titre }}</strong> — réf. {{ reference }} — {{ prix | prixFormate }}</p>
+    </div>
+
+    <label for="nom">Votre nom</label>
+    <input type="text" id="nom" name="nom" required>
+
+    <label for="email">Votre email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telephone">Téléphone (optionnel)</label>
+    <input type="tel" id="telephone" name="telephone">
+
+    <label for="message">Votre question / message</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <button type="submit" class="bouton bouton--accent">Envoyer ma demande</button>
+  </form>
+</details>

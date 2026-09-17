@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  {% if ogImage %}<meta property="og:image" content="{{ site.url }}{{ ogImage }}">{% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/images/logo/icone-fond-fonce.svg">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <div class="conteneur entete__barre">
+      <a class="logo" href="/">
+        <img class="logo__icone" src="/images/logo/icone-fond-fonce.svg" alt="" width="34" height="34">
+        {{ site.nom }}
+      </a>
+      <nav class="nav-principale" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/boutique/">Boutique</a>
+        <a href="/a-propos/">À propos</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    {{ content | safe }}
+  </main>
+
+  <footer class="pied-de-page">
+    <div class="conteneur pied-de-page__grille">
+      <div>
+        <p class="logo--pied">
+          <img class="logo__icone" src="/images/logo/icone-fond-fonce.svg" alt="" width="28" height="28">
+          {{ site.nom }}
+        </p>
+        <p>{{ site.accroche }}</p>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener">Suivez-nous sur Instagram</a>
+      </div>
+      <div>
+        <p class="pied-de-page__titre">Infos pratiques</p>
+        <a href="/livraison-retrait/">Livraison &amp; retrait</a>
+        <a href="/mentions-legales/">Mentions légales</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+    <p class="conteneur pied-de-page__copyright">© {{ annee }} {{ site.nom }} — fait avec amour à {{ site.ville }}.</p>
+  </footer>
+</body>
+</html>

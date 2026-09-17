@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: cat
+  addAllPagesToCollections: true
+permalink: "{{ '/boutique/' if cat.slug == '' else '/boutique/' + cat.slug + '/' }}"
+eleventyComputed:
+  title: "{{ cat.nom }} · Boutique · {{ site.nom }}"
+  description: "Découvrez {{ cat.nom }} chinées par {{ site.nom }}, pièces uniques d'art modeste à vendre à Paris."
+---
+<section class="conteneur page-boutique">
+  <h1>{{ cat.nom }}</h1>
+
+  <nav class="onglets-categories" aria-label="Filtrer par catégorie">
+    {% for c in categories %}
+      <a href="{{ '/boutique/' if c.slug == '' else '/boutique/' + c.slug + '/' }}"
+         class="onglet{% if c.slug == cat.slug %} onglet--actif{% endif %}">{{ c.nom }}</a>
+    {% endfor %}
+  </nav>
+
+  <div class="grille-produits">
+    {% for produit in collections.produit %}
+      {% if cat.slug == '' or produit.data.categorie == cat.slug %}
+        {% include "partials/carte-produit.njk" %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

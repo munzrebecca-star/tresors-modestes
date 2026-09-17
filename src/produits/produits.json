@@ -1,0 +1,10 @@
+{
+  "layout": "layouts/produit.njk",
+  "tags": "produit",
+  "permalink": "/boutique/{{ page.fileSlug }}/",
+  "eleventyComputed": {
+    "title": "{{ titre }} · Boutique · {{ site.nom }}",
+    "description": "{{ titre }} — pièce unique en vente chez {{ site.nom }}. {{ dimensions }}.",
+    "ogImage": "{{ photos[0] }}"
+  }
+}

@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+---
+<article class="conteneur fiche-produit">
+  <nav class="fil-ariane"><a href="/boutique/">← Retour à la boutique</a></nav>
+
+  <div class="fiche-produit__grille">
+    <div class="fiche-produit__galerie">
+      {% if vendu %}<span class="bandeau-vendu bandeau-vendu--grand">Vendu</span>{% endif %}
+      {% for photo in photos %}
+        <img src="{{ photo }}" alt="{{ titre }} — photo {{ loop.index }}" loading="lazy">
+      {% endfor %}
+    </div>
+
+    <div class="fiche-produit__infos">
+      <span class="etiquette-categorie">{{ categorie | nomCategorie }}</span>
+      <h1>{{ titre }}</h1>
+      <p class="fiche-produit__prix">{{ prix | prixFormate }}</p>
+
+      <div class="fiche-produit__caracteristiques">
+        <div><dt>Référence</dt><dd>{{ reference }}</dd></div>
+        <div><dt>Dimensions</dt><dd>{{ dimensions }}</dd></div>
+        <div><dt>État</dt><dd>{{ etat }}</dd></div>
+      </div>
+
+      <div class="fiche-produit__histoire">
+        {{ content | safe }}
+      </div>
+
+      {% if vendu %}
+        <p class="message-vendu">Cette pièce a trouvé preneur ! Une autre vous plaît peut-être dans <a href="/boutique/">la boutique</a>.</p>
+      {% else %}
+        {% include "partials/formulaire-interet.njk" %}
+      {% endif %}
+    </div>
+  </div>
+</article>

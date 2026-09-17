@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+eleventyComputed:
+  title: "Mentions légales · {{ site.nom }}"
+  description: "Mentions légales de {{ site.nom }}."
+---
+<section class="conteneur page-texte">
+  <h1>Mentions légales</h1>
+
+  <h2>Éditeur du site</h2>
+  <p>
+    Ce site est édité à titre personnel par Rebecca et Janis Munz, dans le cadre de ventes occasionnelles d'objets de collection entre particuliers. Aucune société n'est immatriculée à ce jour.<br>
+    [À compléter si une activité commerciale est créée&nbsp;: forme juridique, adresse, numéro SIRET]<br>
+    Email&nbsp;: {{ site.email }}
+  </p>
+
+  <h2>Hébergement</h2>
+  <p>Ce site est hébergé par Netlify, Inc. — 44 Montgomery Street, Suite 300, San Francisco, California 94104, USA.</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>L'ensemble des textes, photographies et visuels présents sur ce site est la propriété de {{ site.nom }}, sauf mention contraire. Toute reproduction est interdite sans autorisation préalable.</p>
+
+  <h2>Données personnelles</h2>
+  <p>Les informations transmises via les formulaires de ce site (nom, email, téléphone, message) sont utilisées uniquement pour répondre à votre demande et ne sont ni revendues ni transmises à des tiers. [À compléter si nécessaire selon votre pratique exacte de conservation des données.]</p>
+</section>
