@@ -81,6 +81,7 @@ h1, h2, h3 { font-family: var(--police-titres); line-height: 1.2; margin: 0 0 0.
 .fiche-produit__grille { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 .fiche-produit__galerie { display: flex; flex-direction: column; gap: 12px; }
 .fiche-produit__galerie img { border-radius: var(--rayon); aspect-ratio: 4 / 3; object-fit: cover; }
+.fiche-produit__artiste { margin: 4px 0 0; color: var(--couleur-texte-doux); font-style: italic; }
 .fiche-produit__prix { font-size: 24px; font-weight: 700; margin: 4px 0 20px; }
 .fiche-produit__caracteristiques { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }
 .fiche-produit__caracteristiques div { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(59, 42, 34, 0.15); padding-bottom: 8px; }

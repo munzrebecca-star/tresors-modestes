@@ -11,7 +11,7 @@
     {% if venduCarte %}<span class="bandeau-vendu">Vendu</span>{% endif %}
   </div>
   <div class="carte-produit__contenu">
-    <span class="etiquette-categorie">{{ categorieCarte | nomCategorie }}</span>
+    {% if categorieCarte %}<span class="etiquette-categorie">{{ categorieCarte | nomCategorie }}</span>{% endif %}
     <h3>{{ titreCarte }}</h3>
     <p class="carte-produit__prix">{{ prixCarte | prixFormate }}</p>
   </div>

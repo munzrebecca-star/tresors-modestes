@@ -61,14 +61,29 @@ async function recupererProduitsAirtable() {
     return [];
   }
 
+  console.log(`[Airtable] ${enregistrements.length} enregistrement(s) reçu(s) depuis la table.`);
+  if (enregistrements[0]) {
+    console.log("[Airtable] Colonnes du premier enregistrement :", Object.keys(enregistrements[0].fields));
+  }
+
+  // Essaie plusieurs noms de colonne possibles (au cas où la table Airtable
+  // n'utilise pas exactement les mêmes intitulés que prévu au départ).
+  function champ(champs, ...noms) {
+    for (const nom of noms) {
+      if (champs[nom] !== undefined && champs[nom] !== "") return champs[nom];
+    }
+    return undefined;
+  }
+
   const slugsUtilises = new Set();
   const produits = [];
 
   for (const enregistrement of enregistrements) {
     const champs = enregistrement.fields;
-    if (!champs.Titre) continue;
+    const titre = champ(champs, "Titre", "Product name", "Nom du produit");
+    if (!titre) continue;
 
-    const slugDeBase = slugify(champs.Titre);
+    const slugDeBase = slugify(titre);
     let slugFinal = slugDeBase;
     let compteur = 2;
     while (slugsUtilises.has(slugFinal)) {
@@ -77,8 +92,15 @@ async function recupererProduitsAirtable() {
     }
     slugsUtilises.add(slugFinal);
 
+    let piecesPhotos = champ(champs, "Photos");
+    if (!piecesPhotos) {
+      piecesPhotos = [champs["Photo 1"], champs["Photo 2"], champs["Photo 3"]]
+        .filter(Boolean)
+        .flat();
+    }
+
     const photos = [];
-    for (const [index, piece] of (champs.Photos || []).entries()) {
+    for (const [index, piece] of piecesPhotos.entries()) {
       const correspondance = piece.filename && piece.filename.match(/\.[a-zA-Z0-9]+$/);
       const extension = correspondance ? correspondance[0].toLowerCase() : ".jpg";
       const nomFichier = `${slugFinal}-${index + 1}${extension}`;
@@ -96,23 +118,28 @@ async function recupererProduitsAirtable() {
       photos.push(`/images/produits-airtable/${nomFichier}`);
     }
 
+    const categorieBrute = champ(champs, "Categorie", "Catégorie");
+
     produits.push({
       slug: slugFinal,
-      titre: champs.Titre,
-      reference: champs.Reference || "",
-      prix: champs.Prix || 0,
-      categorie: NOM_VERS_SLUG_CATEGORIE[champs.Categorie] || "",
-      dimensions: champs.Dimensions || "",
-      etat: champs.Etat || "",
-      histoireHtml: (champs.Histoire || "")
+      titre,
+      artiste: champ(champs, "Artiste") || "",
+      reference: champ(champs, "Reference", "Référence") || "",
+      prix: champ(champs, "Prix") || 0,
+      categorie: NOM_VERS_SLUG_CATEGORIE[categorieBrute] || "",
+      dimensions: champ(champs, "Dimensions") || "",
+      etat: champ(champs, "Etat", "État") || "",
+      histoireHtml: (champ(champs, "Histoire") || "")
         .split(/\n\s*\n/)
         .filter((paragraphe) => paragraphe.trim())
         .map((paragraphe) => `<p>${paragraphe.trim()}</p>`)
         .join("\n"),
-      vendu: !!champs.Vendu,
+      vendu: !!champ(champs, "Vendu"),
       photos,
     });
   }
+
+  console.log(`[Airtable] ${produits.length} produit(s) retenu(s) après lecture des champs.`);
 
   return produits;
 }

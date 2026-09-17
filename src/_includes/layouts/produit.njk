@@ -10,6 +10,7 @@ layout: layouts/base.njk
 {% set vendu = p.vendu if p else vendu %}
 {% set photos = p.photos if p else photos %}
 {% set histoire = p.histoireHtml if p else content %}
+{% set artiste = p.artiste if p else artiste %}
 
 <article class="conteneur fiche-produit">
   <nav class="fil-ariane"><a href="/boutique/">← Retour à la boutique</a></nav>
@@ -23,14 +24,15 @@ layout: layouts/base.njk
     </div>
 
     <div class="fiche-produit__infos">
-      <span class="etiquette-categorie">{{ categorie | nomCategorie }}</span>
+      {% if categorie %}<span class="etiquette-categorie">{{ categorie | nomCategorie }}</span>{% endif %}
       <h1>{{ titre }}</h1>
+      {% if artiste %}<p class="fiche-produit__artiste">{{ artiste }}</p>{% endif %}
       <p class="fiche-produit__prix">{{ prix | prixFormate }}</p>
 
       <div class="fiche-produit__caracteristiques">
-        <div><dt>Référence</dt><dd>{{ reference }}</dd></div>
-        <div><dt>Dimensions</dt><dd>{{ dimensions }}</dd></div>
-        <div><dt>État</dt><dd>{{ etat }}</dd></div>
+        {% if reference %}<div><dt>Référence</dt><dd>{{ reference }}</dd></div>{% endif %}
+        {% if dimensions %}<div><dt>Dimensions</dt><dd>{{ dimensions }}</dd></div>{% endif %}
+        {% if etat %}<div><dt>État</dt><dd>{{ etat }}</dd></div>{% endif %}
       </div>
 
       <div class="fiche-produit__histoire">
