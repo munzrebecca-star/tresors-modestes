@@ -1,6 +1,16 @@
 ---
 layout: layouts/base.njk
 ---
+{% set titre = p.titre if p else titre %}
+{% set reference = p.reference if p else reference %}
+{% set prix = p.prix if p else prix %}
+{% set categorie = p.categorie if p else categorie %}
+{% set dimensions = p.dimensions if p else dimensions %}
+{% set etat = p.etat if p else etat %}
+{% set vendu = p.vendu if p else vendu %}
+{% set photos = p.photos if p else photos %}
+{% set histoire = p.histoireHtml if p else content %}
+
 <article class="conteneur fiche-produit">
   <nav class="fil-ariane"><a href="/boutique/">← Retour à la boutique</a></nav>
 
@@ -24,7 +34,7 @@ layout: layouts/base.njk
       </div>
 
       <div class="fiche-produit__histoire">
-        {{ content | safe }}
+        {{ histoire | safe }}
       </div>
 
       {% if vendu %}

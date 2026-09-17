@@ -1,0 +1,15 @@
+---
+layout: layouts/produit.njk
+tags: produit
+pagination:
+  data: produitsAirtable
+  size: 1
+  alias: p
+  addAllPagesToCollections: true
+permalink: "/boutique/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.titre }} · Boutique · {{ site.nom }}"
+  description: "{{ p.titre }} — pièce unique en vente chez {{ site.nom }}. {{ p.dimensions }}."
+  ogImage: "{{ p.photos[0] }}"
+---
+{{ p.histoireHtml | safe }}

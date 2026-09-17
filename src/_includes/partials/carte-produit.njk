@@ -1,11 +1,18 @@
-<a class="carte-produit{% if produit.data.vendu %} carte-produit--vendu{% endif %}" href="{{ produit.url }}">
+{% set d = produit.data %}
+{% set titreCarte = d.p.titre if d.p else d.titre %}
+{% set categorieCarte = d.p.categorie if d.p else d.categorie %}
+{% set prixCarte = d.p.prix if d.p else d.prix %}
+{% set venduCarte = d.p.vendu if d.p else d.vendu %}
+{% set photoCarte = d.p.photos[0] if d.p else d.photos[0] %}
+
+<a class="carte-produit{% if venduCarte %} carte-produit--vendu{% endif %}" href="{{ produit.url }}">
   <div class="carte-produit__image">
-    <img src="{{ produit.data.photos[0] }}" alt="{{ produit.data.titre }}" loading="lazy">
-    {% if produit.data.vendu %}<span class="bandeau-vendu">Vendu</span>{% endif %}
+    <img src="{{ photoCarte }}" alt="{{ titreCarte }}" loading="lazy">
+    {% if venduCarte %}<span class="bandeau-vendu">Vendu</span>{% endif %}
   </div>
   <div class="carte-produit__contenu">
-    <span class="etiquette-categorie">{{ produit.data.categorie | nomCategorie }}</span>
-    <h3>{{ produit.data.titre }}</h3>
-    <p class="carte-produit__prix">{{ produit.data.prix | prixFormate }}</p>
+    <span class="etiquette-categorie">{{ categorieCarte | nomCategorie }}</span>
+    <h3>{{ titreCarte }}</h3>
+    <p class="carte-produit__prix">{{ prixCarte | prixFormate }}</p>
   </div>
 </a>
